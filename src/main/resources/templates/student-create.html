@@ -1,0 +1,183 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Student | HostelCare</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: #f7f4ff;
+            color: #352653;
+        }
+
+        header {
+            background: #7353a6;
+            color: white;
+            padding: 22px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h2 {
+            margin: 0;
+        }
+
+        header a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .container {
+            max-width: 550px;
+            margin: 55px auto;
+            padding: 0 18px;
+        }
+
+        .card {
+            background: white;
+            padding: 35px;
+            border-radius: 18px;
+            box-shadow: 0 8px 28px rgba(70, 45, 110, 0.08);
+        }
+
+        h1 {
+            color: #5d408c;
+            margin-top: 0;
+        }
+
+        .intro {
+            color: #81758f;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin: 17px 0 8px;
+            font-weight: 600;
+        }
+
+        input {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #dcd2ed;
+            border-radius: 9px;
+            font-size: 15px;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #7353a6;
+            box-shadow: 0 0 0 3px #eee7fa;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 25px;
+            padding: 14px;
+            border: none;
+            border-radius: 9px;
+            background: #7353a6;
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #5c408a;
+        }
+
+        .error {
+            background: #fff0f0;
+            color: #b42318;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .back {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #7353a6;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        footer {
+            text-align: center;
+            color: #857995;
+            padding: 20px;
+        }
+
+        @media(max-width: 600px) {
+            .card {
+                padding: 25px 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h2>HostelCare 💜</h2>
+    <a href="/admin">Dashboard</a>
+</header>
+
+<div class="container">
+    <div class="card">
+
+        <h1>Add New Student</h1>
+
+<p class="intro">
+    Create an official HostelCare account for a hostel student.
+    Enter the college email ID already assigned to the student.
+    This email ID will be used to log in to HostelCare.
+</p>
+
+        <div class="error" th:if="${error}" th:text="${error}"></div>
+
+        <form action="/warden/students" method="post">
+
+            <label>Student Name</label>
+            <input type="text" name="name"
+                   placeholder="Enter student name"
+                   required maxlength="100">
+
+<label>College Email ID (Used for Hostel Login)</label>
+<input type="email" name="email"
+       placeholder="Enter student's existing college email ID"
+       required maxlength="150">
+
+            <label>Temporary Password</label>
+            <input type="password" name="password"
+                   placeholder="Create temporary password"
+                   required minlength="8">
+
+            <button type="submit">Create Student Account</button>
+
+        </form>
+
+        <a href="/admin" class="back">← Back to Warden Dashboard</a>
+
+    </div>
+</div>
+
+<footer>
+    HostelCare · Making hostel life better 💜
+</footer>
+
+</body>
+</html>

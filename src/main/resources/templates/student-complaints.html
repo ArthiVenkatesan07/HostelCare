@@ -1,0 +1,166 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Complaints | HostelCare</title>
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        padding: 30px 18px;
+        font-family: "Segoe UI", Arial, sans-serif;
+        background: #f7f5fc;
+        color: #302448;
+    }
+
+    .container {
+        max-width: 1000px;
+        margin: 25px auto;
+    }
+
+    .top-links {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 12px;
+        background: linear-gradient(135deg, #7353a6, #9274c5);
+        padding: 18px 22px;
+        border-radius: 14px;
+        margin-bottom: 30px;
+        box-shadow: 0 4px 16px rgba(70, 45, 110, 0.12);
+    }
+
+    a {
+        color: #7353a6;
+        text-decoration: none;
+        font-weight: 600;
+    }
+
+    .top-links a {
+        color: white;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+    h1 {
+        color: #5d408c;
+        font-size: clamp(26px, 4vw, 34px);
+        margin-bottom: 8px;
+    }
+
+    .intro {
+        color: #81758f;
+        line-height: 1.6;
+        margin-bottom: 28px;
+    }
+
+    .complaint, .empty {
+        background: white;
+        padding: 24px;
+        margin: 18px 0;
+        border-radius: 16px;
+        border: 1px solid #eee8f7;
+        box-shadow: 0 6px 24px rgba(65, 42, 100, 0.06);
+    }
+
+    .complaint h3 {
+        color: #5d408c;
+        font-size: 20px;
+        margin-top: 0;
+    }
+
+    .complaint p {
+        line-height: 1.7;
+        overflow-wrap: anywhere;
+    }
+
+    .status {
+        display: inline-block;
+        background: #f2edfb;
+        color: #7353a6;
+        padding: 7px 12px;
+        border-radius: 8px;
+        font-weight: 700;
+        font-size: 13px;
+    }
+
+    .complaint a:not(.top-links a) {
+        display: inline-block;
+        margin-top: 8px;
+    }
+
+    .empty {
+        color: #81758f;
+        line-height: 1.6;
+    }
+
+    @media (max-width: 600px) {
+        body {
+            padding: 18px 12px;
+        }
+
+        .complaint, .empty {
+            padding: 18px;
+        }
+    }
+</style>
+
+</head>
+<body>
+<div class="container">
+    <div class="top-links">
+        <a href="/complaints/new">Submit a Complaint</a>
+        <a href="/logout">Logout</a>
+    </div>
+
+    <h1>My Complaints 💜</h1>
+    <p class="intro">
+    Track your hostel complaints, check their progress, and share feedback after resolution.
+</p>
+
+    <div th:if="${#lists.isEmpty(complaints)}" class="empty">
+        You haven't submitted any complaints yet.
+    </div>
+
+    <div th:each="c : ${complaints}" class="complaint">
+        <h3 th:text="${c.title}">Complaint title</h3>
+        <p>
+            <strong>Category:</strong>
+            <span th:text="${c.category}">Category</span>
+        </p>
+        <p>
+            <strong>Description:</strong>
+            <span th:text="${c.description}">Description</span>
+        </p>
+        <p>
+            <strong>Priority:</strong>
+            <span th:text="${c.priority}">Medium</span>
+        </p>
+        <p class="status">
+            Status:
+            <span th:text="${c.status}">PENDING</span>
+        </p>
+        <div th:if="${c.status == 'RESOLVED'}">
+    <a th:if="${c.feedbackRating == null}"
+       th:href="@{/complaints/feedback(id=${c.id})}">
+        ⭐ Give Feedback
+    </a>
+
+    <p th:if="${c.feedbackRating != null}">
+        💜 Feedback submitted —
+        <span th:text="${c.feedbackRating}"></span>/5 stars
+    </p>
+</div>
+    </div>
+</div>
+</body>
+</html>

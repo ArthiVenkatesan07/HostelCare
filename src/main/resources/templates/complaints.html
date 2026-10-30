@@ -1,0 +1,269 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Track Complaints | HostelCare</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f7f4ff;
+            color: #352653;
+        }
+
+        header {
+            background: #7353a6;
+            color: white;
+            padding: 22px 35px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        header h2 {
+            margin: 0;
+        }
+
+        header a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 35px auto;
+            padding: 0 20px;
+        }
+
+        .intro {
+            margin-bottom: 25px;
+        }
+
+        .intro h1 {
+            color: #7353a6;
+            margin-bottom: 8px;
+        }
+
+        .intro p {
+            color: #766b85;
+        }
+
+        .table-card {
+            background: white;
+            padding: 20px;
+            border-radius: 16px;
+            box-shadow: 0 5px 20px rgba(80, 50, 120, 0.08);
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 850px;
+        }
+
+        th {
+            background: #eee6ff;
+            color: #51377b;
+            padding: 15px;
+            text-align: left;
+        }
+
+        td {
+            padding: 15px;
+            border-bottom: 1px solid #eee8f7;
+            vertical-align: top;
+        }
+
+        tr:hover td {
+            background: #fcfaff;
+        }
+
+        .status {
+            display: inline-block;
+            padding: 6px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .pending {
+            background: #fff0cc;
+            color: #8a5b00;
+        }
+
+        .in-progress {
+            background: #dcecff;
+            color: #245b9e;
+        }
+
+        .resolved {
+            background: #d9f5e4;
+            color: #207245;
+        }
+
+        select {
+            padding: 8px;
+            border: 1px solid #d6c8ed;
+            border-radius: 7px;
+            margin: 4px 0;
+            background: white;
+        }
+
+        button {
+            background: #7353a6;
+            color: white;
+            border: none;
+            padding: 9px 13px;
+            border-radius: 7px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #5c408a;
+        }
+
+        .actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 22px;
+        }
+
+        .link-button {
+            display: inline-block;
+            background: #7353a6;
+            color: white;
+            padding: 11px 16px;
+            text-decoration: none;
+            border-radius: 8px;
+        }
+
+        .secondary {
+            background: white;
+            color: #7353a6;
+            border: 1px solid #7353a6;
+        }
+
+        .empty {
+            text-align: center;
+            padding: 25px;
+        }
+
+        footer {
+            text-align: center;
+            color: #857995;
+            padding: 25px;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h2>HostelCare 💜</h2>
+    <a href="/">Home</a>
+</header>
+
+<div class="container">
+
+    <div class="intro">
+        <h1>Complaint Tracking</h1>
+        <p>View submitted complaints and update their current status.</p>
+    </div>
+
+    <div class="table-card">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Complaint Details</th>
+                    <th>Category</th>
+                    <th>Priority</th>
+                    <th>Status & Update</th>
+                    <th>Created At</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr th:each="c : ${complaints}">
+                    <td th:text="${c.id}"></td>
+
+                    <td>
+                        <strong th:text="${c.title}"></strong>
+                        <p th:text="${c.description}"></p>
+                    </td>
+
+                    <td th:text="${c.category}"></td>
+
+                    <td th:text="${c.priority}"></td>
+
+                    <td>
+                        <span class="status"
+                              th:classappend="${c.status == 'PENDING' ? ' pending' : (c.status == 'IN_PROGRESS' ? ' in-progress' : ' resolved')}"
+                              th:text="${c.status}">
+                        </span>
+
+                        <form action="/complaints/update-status" method="get">
+                            <input type="hidden" name="id" th:value="${c.id}">
+
+                            <select name="status">
+                                <option value="PENDING"
+                                    th:selected="${c.status == 'PENDING'}">
+                                    Pending
+                                </option>
+                                <option value="IN_PROGRESS"
+                                    th:selected="${c.status == 'IN_PROGRESS'}">
+                                    In Progress
+                                </option>
+                                <option value="RESOLVED"
+                                    th:selected="${c.status == 'RESOLVED'}">
+                                    Resolved
+                                </option>
+                            </select>
+
+                            <button type="submit">Update</button>
+                        </form>
+                    </td>
+
+                    <td th:text="${c.createdAt}"></td>
+                </tr>
+
+                <tr th:if="${#lists.isEmpty(complaints)}">
+                    <td colspan="6" class="empty">
+                        No complaints have been submitted yet.
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="actions">
+        <a class="link-button" href="/complaints/new">
+            + Register Complaint
+        </a>
+
+        <a class="link-button secondary" href="/">
+            Back to Home
+        </a>
+    </div>
+
+</div>
+
+<footer>
+    HostelCare · Making hostel life better 💜
+</footer>
+
+</body>
+</html>

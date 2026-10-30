@@ -1,0 +1,220 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complaint Submitted | HostelCare</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: linear-gradient(135deg, #f7f4ff, #eee7ff);
+            color: #352653;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background: #7353a6;
+            color: white;
+            padding: 20px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h2 {
+            margin: 0;
+        }
+
+        header a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .main {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 18px;
+        }
+
+        .success-card {
+            background: white;
+            width: 100%;
+            max-width: 600px;
+            padding: 45px 35px;
+            text-align: center;
+            border-radius: 22px;
+            box-shadow: 0 10px 35px rgba(70, 45, 110, 0.10);
+        }
+
+        .success-icon {
+            width: 85px;
+            height: 85px;
+            background: #eee7ff;
+            color: #7353a6;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 48px;
+            margin: 0 auto 22px;
+        }
+
+        h1 {
+            color: #5d408c;
+            margin-bottom: 12px;
+            font-size: 30px;
+        }
+
+        .message {
+            color: #81758f;
+            line-height: 1.7;
+            margin-bottom: 30px;
+        }
+
+        .details {
+            background: #f8f5ff;
+            border: 1px solid #eee8f7;
+            border-radius: 13px;
+            padding: 18px;
+            margin-bottom: 28px;
+        }
+
+        .details p {
+            margin: 8px 0;
+            font-size: 14px;
+        }
+
+        .status {
+            display: inline-block;
+            background: #fff0cc;
+            color: #8a5b00;
+            padding: 6px 13px;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+
+        .actions {
+            display: flex;
+            flex-direction: column;
+            gap: 13px;
+        }
+
+        .btn {
+            display: block;
+            padding: 14px;
+            border-radius: 9px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+
+        .primary {
+            background: #7353a6;
+            color: white;
+        }
+
+        .primary:hover {
+            background: #5c408a;
+        }
+
+        .secondary {
+            border: 1px solid #7353a6;
+            color: #7353a6;
+        }
+
+        .secondary:hover {
+            background: #f4efff;
+        }
+
+        .home {
+            background: #f1edfa;
+            color: #5d408c;
+        }
+
+        .home:hover {
+            background: #e7def8;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #857995;
+            font-size: 13px;
+        }
+
+        @media (max-width: 500px) {
+            .success-card {
+                padding: 32px 20px;
+            }
+
+            h1 {
+                font-size: 25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h2>HostelCare 💜</h2>
+    <a href="/">Home</a>
+</header>
+
+<main class="main">
+    <section class="success-card">
+
+        <div class="success-icon">✓</div>
+
+        <h1>Complaint Submitted!</h1>
+
+        <p class="message">
+            Your complaint has been successfully registered.
+            Our hostel management team will review it soon.
+            You can track its progress anytime.
+        </p>
+
+        <div class="details">
+            <p><strong>Status:</strong>
+                <span class="status">PENDING</span>
+            </p>
+            <p>Your complaint is now registered in HostelCare.</p>
+        </div>
+
+        <div class="actions">
+
+            <a href="/student/complaints" class="btn primary">
+                View My Complaints
+            </a>
+
+            <a href="/complaints/new" class="btn secondary">
+                + Submit Another Complaint
+            </a>
+
+            <a href="/" class="btn home">
+                ← Back to Home
+            </a>
+
+        </div>
+
+    </section>
+</main>
+
+<footer>
+    HostelCare · Making hostel life better 💜
+</footer>
+
+</body>
+</html>

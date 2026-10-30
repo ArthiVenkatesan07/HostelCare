@@ -1,0 +1,139 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Students | HostelCare</title>
+
+    <style>
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: #f7f4ff;
+            color: #352653;
+        }
+
+        header {
+            background: #7353a6;
+            color: white;
+            padding: 22px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 18px;
+        }
+
+        .card {
+            background: white;
+            padding: 28px;
+            border-radius: 16px;
+            box-shadow: 0 8px 28px rgba(70,45,110,0.08);
+            overflow-x: auto;
+        }
+
+        h1 { color: #5d408c; }
+
+        .button {
+            display: inline-block;
+            background: #7353a6;
+            color: white;
+            padding: 11px 17px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 550px;
+        }
+
+        th, td {
+            padding: 14px;
+            text-align: left;
+            border-bottom: 1px solid #eee8f7;
+        }
+
+        th {
+            background: #f2edfb;
+            color: #563b80;
+        }
+
+        .active { color: #23834d; font-weight: 600; }
+        .inactive { color: #b42318; font-weight: 600; }
+
+        .empty {
+            text-align: center;
+            padding: 25px;
+            color: #81758f;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h2>HostelCare 💜</h2>
+    <a href="/admin">Dashboard</a>
+</header>
+
+<div class="container">
+    <h1>Manage Students</h1>
+    <p>View all student accounts registered in HostelCare.</p>
+
+    <a class="button" href="/warden/students/new">+ Add Student</a>
+
+    <div class="card">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Student Name</th>
+                    <th>College Email</th>
+                    <th>Account Status</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr th:each="student : ${students}">
+                    <td th:text="${student.id}"></td>
+                    <td th:text="${student.name}"></td>
+                    <td th:text="${student.email}"></td>
+                    <td>
+                        <span th:if="${student.active}" class="active">
+                            Active
+                        </span>
+                        <span th:unless="${student.active}" class="inactive">
+                            Inactive
+                        </span>
+                    </td>
+                </tr>
+
+                <tr th:if="${#lists.isEmpty(students)}">
+                    <td colspan="4" class="empty">
+                        No student accounts found.
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</body>
+</html>

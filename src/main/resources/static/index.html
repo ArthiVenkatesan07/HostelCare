@@ -1,0 +1,389 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HostelCare | Hostel Management</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #faf8ff;
+            color: #302746;
+            line-height: 1.6;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 8%;
+            background: white;
+            box-shadow: 0 2px 12px #ddd5ee;
+        }
+
+        .logo {
+            color: #7655c8;
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #514568;
+            margin-left: 24px;
+            font-weight: 600;
+        }
+
+        nav a:hover {
+            color: #8b68df;
+        }
+
+        .hero {
+            min-height: 440px;
+            padding: 80px 8%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+            background: linear-gradient(120deg, #f0eaff, #fff);
+        }
+
+        .hero-content {
+            max-width: 600px;
+        }
+
+        .tag {
+            display: inline-block;
+            background: #e4d9ff;
+            color: #6947b4;
+            padding: 7px 15px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        h1 {
+            font-size: 48px;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        h1 span {
+            color: #8059d1;
+        }
+
+        .hero p {
+            color: #6b627a;
+            font-size: 17px;
+            margin-bottom: 28px;
+        }
+
+        .button {
+            display: inline-block;
+            text-decoration: none;
+            padding: 13px 22px;
+            border-radius: 9px;
+            font-weight: bold;
+            margin: 4px 8px 4px 0;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+.button:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px #c4a9f5;
+    filter: brightness(1.08);
+}
+
+        .primary {
+            background: #8059d1;
+            color: white;
+        }
+
+        .secondary {
+            border: 1px solid #8059d1;
+            color: #8059d1;
+            background: white;
+        }
+
+        .hero-art {
+            width: 280px;
+            height: 280px;
+            flex-shrink: 0;
+            border-radius: 35% 65% 60% 40%;
+            background: #e5dbff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 105px;
+        }
+
+        section {
+            padding: 65px 8%;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .section-text {
+            color: #756c83;
+            margin-bottom: 35px;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+
+        .card {
+            background: white;
+            padding: 28px 22px;
+            border-radius: 16px;
+            box-shadow: 0 5px 22px #e9e2f5;
+            text-align: left;
+        }
+
+        .card .icon {
+            font-size: 35px;
+            margin-bottom: 12px;
+        }
+
+        .card h3 {
+            margin-bottom: 10px;
+            color: #6748ad;
+        }
+
+        .card p {
+            color: #756c83;
+            font-size: 15px;
+        }
+
+        .steps {
+            background: #f0eaff;
+        }
+
+        .step-list {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        .step {
+            background: white;
+            padding: 22px;
+            border-radius: 12px;
+            width: 230px;
+        }
+
+        .step strong {
+            display: block;
+            color: #8059d1;
+            font-size: 19px;
+            margin-bottom: 8px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 24px;
+            background: #302746;
+            color: white;
+        }
+
+        @media (max-width: 750px) {
+            header {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            nav a {
+                margin: 0 7px;
+                font-size: 14px;
+            }
+
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding: 55px 7%;
+            }
+
+            h1 {
+                font-size: 36px;
+            }
+
+            .hero-art {
+                width: 200px;
+                height: 200px;
+                font-size: 75px;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">🏠 HostelCare</div>
+
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#features">Features</a>
+            <a href="#process">How It Works</a>
+            <br><br>
+
+<a href="/login" class="button primary">
+    Student / Warden Login 💜
+</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero" id="home">
+            <div class="hero-content">
+                <span class="tag">A better hostel experience</span>
+
+                <h1>
+                    Your Hostel,<br>
+                    Your Comfort,<br>
+                    <span>Our Care.</span>
+                </h1>
+
+                <p>
+                    A simple and organized way to report hostel
+                    complaints, track their progress, and improve
+                    everyday hostel living.
+                </p>
+
+                <a href="#features" class="button primary">
+                    Explore Features
+                </a>
+
+                <a href="#process" class="button secondary">
+                    How It Works
+                </a>
+            </div>
+
+            <div class="hero-art" aria-label="Home illustration">
+                🏡
+            </div>
+        </section>
+
+        <section id="features">
+            <h2 class="section-title">Everything in One Place</h2>
+
+            <p class="section-text">
+                Designed to make hostel complaint management easier.
+            </p>
+
+            <div class="features">
+                <article class="card">
+                    <div class="icon">📝</div>
+                    <h3>Complaint Registration</h3>
+                    <p>
+                        Record maintenance and other hostel-related
+                        issues in one organized system.
+                    </p>
+                </article>
+
+                <article class="card">
+                    <div class="icon">🔎</div>
+                    <h3>Status Tracking</h3>
+                    <p>
+                        Follow complaint progress from pending
+                        to in progress and resolved.
+                    </p>
+                </article>
+
+                <article class="card">
+                    <div class="icon">🛠️</div>
+                    <h3>Maintenance Reports</h3>
+                    <p>
+                        Help hostel administrators review
+                        reported issues and their resolution.
+                    </p>
+                </article>
+
+                <article class="card">
+                    <div class="icon">👥</div>
+                    <h3>Student & Admin Access</h3>
+                    <p>
+                        Separate student and administrator
+                        access for their respective tasks.
+                    </p>
+                </article>
+
+                <article class="card">
+                    <div class="icon">🚦</div>
+                    <h3>Complaint Priority</h3>
+                    <p>
+                        Classify complaints by priority so
+                        important issues can be identified.
+                    </p>
+                </article>
+
+                <article class="card">
+                    <div class="icon">📷</div>
+                    <h3>Image Attachments</h3>
+                    <p>
+                        Support images of maintenance issues
+                        to help explain the reported problem.
+                    </p>
+                </article>
+            </div>
+        </section>
+
+        <section class="steps" id="process">
+            <h2 class="section-title">How HostelCare Works</h2>
+
+            <p class="section-text">
+                A straightforward process for managing complaints.
+            </p>
+
+            <div class="step-list">
+                <div class="step">
+                    <strong>01. Report</strong>
+                    Submit details about a hostel issue.
+                </div>
+
+                <div class="step">
+                    <strong>02. Review</strong>
+                    The administrator reviews the complaint.
+                </div>
+
+                <div class="step">
+                    <strong>03. Resolve</strong>
+                    Track progress until the issue is resolved.
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2 class="section-title">A Better Hostel Starts Here</h2>
+            <p class="section-text">
+                HostelCare aims to make communication and
+                maintenance tracking more organized.
+            </p>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2026 HostelCare | Hostel Complaint and Management System</p>
+    </footer>
+
+</body>
+</html>
